@@ -4,18 +4,19 @@
  Permite al usuario reservar turnos via web. Asi tambien la administracion por parte de los administradores como de los recepcionistas.
  
  Se utilizaron las siguientes tecnologias:
- Javascript
- NodeJs
- ExpressJs
- Sequelize
- Plantillas Pug
- Jquery
- MySql
- JWT
- Passport
- Bootstrap
- Fullcalendar
- Nodemailer
+ Javascript,
+ NodeJs,
+ ExpressJs,
+ Sequelize,
+ Plantillas Pug,
+ Jquery,
+ MySql,
+ JWT,
+ Passport,
+ Bootstrap,
+ Fullcalendar,
+ DataTables
+ Nodemailer.
  
 
 USUARIOS
