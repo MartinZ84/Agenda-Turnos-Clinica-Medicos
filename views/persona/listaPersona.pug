@@ -1,0 +1,243 @@
+doctype html
+html
+include ../head
+
+body
+    header.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0.shadow
+      a.navbar-brand.col-md-3.col-lg-2.me-0.px-3(href='/') Cuyana Medical
+      button.navbar-toggler.position-absolute.d-md-none.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#sidebarMenu' aria-controls='sidebarMenu' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+     
+      .navbar-nav
+        .nav-item.text-nowrap
+          if(user && persona)
+            a.nav-link.pl-5 Bienvenido  #{persona.nombre} #{persona.apellido}.  Usuario: #{user.usuario} 
+          else  
+            a.nav-link.pl-5 Bienvenido Usuario: #{user.usuario} 
+      .navbar-nav      
+        .nav-item.text-nowrap
+          a.nav-link.px-3(href='/logout') Cerrar sesion
+    .container-fluid
+      .row
+        nav#sidebarMenu.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse
+          .position-sticky.pt-3
+            ul.nav.flex-column
+              li.nav-item
+                a.nav-link(aria-current='page' href='/clinica/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" aria-hidden="true")
+                    path(d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z")
+                    polyline(points="9 22 9 12 15 12 15 22")
+                  |                 Clínicas
+              li.nav-item
+                a.nav-link(href='/medico/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user" aria-hidden="true")
+                    path(d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2")
+                    circle(cx="12" cy="7" r="4")
+
+                  |                 Médicos
+              li.nav-item
+                a.nav-link(href='/procedimiento/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity" aria-hidden="true")
+                    polyline(points="22 12 18 12 15 21 9 3 6 12 2 12")
+      
+                  |                 Procedimientos
+              li.nav-item
+                a.nav-link(href='/especialidad/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square" aria-hidden="true")
+                    rect(x="3" y="3" width="18" height="18" rx="2" ry="2")
+                    line(x1="12" y1="8" x2="12" y2="16")
+                    line(x1="8" y1="12" x2="16" y2="12")
+                  |    Especialidades
+              li.nav-item
+                a.nav-link(href='/persona/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" aria-hidden="true")
+                    path(d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2")
+                    circle( cx="9" cy="7" r="4")
+                    path(d="M23 21v-2a4 4 0 0 0-3-3.87")
+                    path(d="M16 3.13a4 4 0 0 1 0 7.75")
+                 
+                  |                 Personas
+              //- li.nav-item
+              //-   a.nav-link(href='usuario')
+              //-     svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" aria-hidden="true")
+              //-       path(d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2")
+              //-       circle( cx="9" cy="7" r="4")
+              //-       path(d="M23 21v-2a4 4 0 0 0-3-3.87")
+              //-       path(d="M16 3.13a4 4 0 0 1 0 7.75")
+              //-     |                 Usuarios
+              li.nav-item
+                a.nav-link(href='/agenda/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book" aria-hidden="true")
+                    path(d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20")
+                    path(d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z")
+                    
+                  |                 Agenda
+              li.nav-item
+                if(user.RoleId==2)
+                  a.nav-link(href='/turno/secretarioTurnos') 
+                     svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open" aria-hidden="true")
+                      path(d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z")
+                      path(d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z")            
+                     |              Turnos
+                if(user.RoleId==3)
+                  a.nav-link(href='/turno/misTurnos')
+                    svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open" aria-hidden="true")
+                      path(d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z")
+                      path(d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z")            
+                    |                 Mis turnos   
+          
+        main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
+          .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+            h1.h2 Personas
+            .btn-toolbar.mb-2.mb-md-0
+              .btn-group.me-2
+                a.btn.btn-sm.btn-outline-secondary(type='button' href='/persona/agregarPersona') Agregar persona
+                //- button.btn.btn-sm.btn-outline-secondary(type='button') Export
+              //- button.btn.btn-sm.btn-outline-secondary.dropdown-toggle(type='button')
+              //-   span(data-feather='calendar')
+              //-   |               This week
+             
+          p.text-center Lista de personas     
+          div(class="container-xxl")
+            div(class="row")
+            div(class="col-lg-12")
+                div(class="table-responsive")              
+                  //- h2(class="text-center mt-3") Clinicas       
+
+                  table(id="tablaPersonas" style="width: 100%" class="table table-striped table-bordered table-condensed")
+                    thead(id="thListas" class="text-center")  
+                      tr
+                        th(hidden) id
+                        th(hidden) usuarioid
+                        th DNI                        
+                        th Nombre              
+                        th Apellido 
+                        th Telefono
+                        th E-mail                          
+                        th Domicilio
+                        th Riesgoso   
+                        th Fecha creación            
+                        th Acciones                                
+                    tbody(id='tbPersonas' class="text-center")
+                      if(personas)
+                        each val in personas
+                          tr
+                            td(hidden)= val.id
+                            td(hidden)= val.usuarioid
+                            td= val.dni
+                            td= val.nombre
+                            td= val.apellido 
+                            td= val.celular
+                            td= val.email 
+                            td= val.domicilio 
+                            if(val.riesgoso < 4)
+                              td No
+                            else 
+                              td(style="background-color:#FF0033") SI 
+                                                                  
+                            td(data-order=moment(val.createdAt).format('YY/MM/DD'))= moment(val.createdAt).format('DD/MM/YYYY')
+                            td
+                              div(class="d-flex justify-content-center")
+                                button(id='btnEditarPersona' type="button" class="btn btn-success me-3" data-toggle="modal" ) Editar                 
+                                //- a(href='/borrar/'+val.id   class="btn btn-danger" onclick="eliminar(this)") Borrar
+                                button(id='btnBorrarPersona' type="button" class="btn btn-danger me-3" data-toggle="modal" ) Borrar
+            .row
+                          div(class="modal fade" id="modalMedico" tabindex="-1" aria-labelledby="modalMedico" aria-hidden="true"  role="dialog")
+                              div(class="modal-dialog")
+                                  div(class="modal-content")
+                                      div(class="modal-header")
+                                          h5(class="modal-title" id="myModal") Editar Medico
+                                          button(type="button" class="btn-close" data-bs-dismiss="modal") 
+                                          
+                                      div(class="modal-body")
+                                        form(method="post")
+                                          .form-group
+                                          input(id="id" name='id' hidden type="text")
+                                          input(id="personaid" name='personaid' hidden type="text")
+                                          input(id="especialidadid" name='especialidadid' hidden type="text")
+                                          div(class="mb-3")
+                                            label(for="nombre" class="col col-form-label") Especialidad
+                                            div(class="col-sm")
+                                              input(id='especialidad' name="especialidad" type="text"  class="form-control" placeholder="Especialidad"
+                                              autofocus='' required)
+                                          div(class="mb-3")
+                                            label(for="nombre" class="col col-form-label") Nombre
+                                            div(class="col-sm")
+                                              input(id='nombre' name="nombre" type="text"  class="form-control" placeholder="Nombre"
+                                              autofocus='' required)   
+                                          div(class="mb-3")
+                                            label(for="apellido" class="col col-form-label") Apellido
+                                            div(class="col-sm")
+                                              input(id='apellido' name="apellido" type="text"  class="form-control" placeholder="apellido"
+                                              autofocus='' required)        
+                                          div(class="mb-3")
+                                            label(for="matricula" class="col col-form-label") Matricula
+                                            div(class="col-sm")
+                                              input(id='matricula' name="matricula" type="text"  class="form-control" placeholder="matricula"
+                                              autofocus='' required)
+                                            
+                                          div(class="mb-3")
+                                            label(for="fecha_creacion" class="col col-form-label" ) Fecha creacion
+                                            div(class="col-sm")
+                                              input(id='fecha_creacion' name='fecha_creacion' class="form-control")
+                                          div(class="modal-footer")
+                                            button(type="button" class="btn btn-secondary" data-bs-dismiss="modal") Cerrar
+                                            button(id="btnModalMedico")
+            .row
+                          div(class="modal fade" id="modalMedicoBorrar" tabindex="-1" aria-labelledby="modalMedicoBorrar" aria-hidden="true"  role="dialog")
+                              div(class="modal-dialog")
+                                  div(class="modal-content")
+                                      div(class="modal-header")
+                                          h5(class="modal-title" id="myModal") Editar Medico
+                                          button(type="button" class="btn-close" data-bs-dismiss="modal") 
+                                          
+                                      div(class="modal-body")
+                                        form(method="post")                              
+                                          .form-group
+                                          input(id="idb" name='id' hidden type="text")
+                                          input(id="personaidb" name='personaid' hidden type="text")
+                                          input(id="especialidadidb" name='especialidadid' hidden) 
+                                          div(class="mb-3")
+                                            label(for="nombre" class="col col-form-label") Especialidad
+                                            div(class="col-sm")
+                                              input(id='especialidadb' name="especialidad" type="text"  class="form-control" placeholder="Especialidad"
+                                              autofocus='' required)
+                                          div(class="mb-3")
+                                            label(for="nombre" class="col col-form-label") Nombre
+                                            div(class="col-sm")
+                                              input(id='nombreb' name="nombre" type="text"  class="form-control" placeholder="Nombre"
+                                              autofocus='' required)   
+                                          div(class="mb-3")
+                                            label(for="apellido" class="col col-form-label") Apellido
+                                            div(class="col-sm")
+                                              input(id='apellidob' name="apellido" type="text"  class="form-control" placeholder="apellido"
+                                              autofocus='' required)        
+                                          div(class="mb-3")
+                                            label(for="matricula" class="col col-form-label") Matricula
+                                            div(class="col-sm")
+                                              input(id='matriculab' name="matricula" type="text"  class="form-control" placeholder="matricula"
+                                              autofocus='' required)
+                                                                                                        
+                                          div(class="modal-footer")
+                                            button(type="button" class="btn btn-secondary" data-bs-dismiss="modal") Cerrar
+                                            button(id="btnModalMedicoBorrar")
+  
+script(src="//cdn.jsdelivr.net/npm/sweetalert2@11") 
+if(alert)
+  script.
+    Swal.fire({
+    title: '#{alertTitle}',       
+    text: '#{alertMessage}',
+    //- text: 'ahhhhhhh',
+    icon: '#{alertIcon}',
+    showConfirmButton:  '#{showConfirmButton}',
+    timer: '#{timer}'
+    }).then(()=>{
+        window.location = '/#{ruta}'
+    })
+script(src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous")    
+script
+  include ./../../public/javascripts/modal_personas.js    
+include ../footer                           
+

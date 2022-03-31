@@ -1,0 +1,34 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "agenda_turnos",
+    "host": "localhost",
+    "dialect": "mysql",
+    "define": { "freezeTableName": true },
+    "timezone": "-03:00",
+    "useUTC": false
+  },
+
+  "development_bk": {
+    "username": "root",
+    "password": null,
+    "database": "to_do_list",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

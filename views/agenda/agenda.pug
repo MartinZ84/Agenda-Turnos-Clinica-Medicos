@@ -1,0 +1,183 @@
+doctype html
+html
+include ../head
+
+body
+    header.navbar.navbar-dark.sticky-top.bg-dark.flex-md-nowrap.p-0.shadow
+      a.navbar-brand.col-md-3.col-lg-2.me-0.px-3(href='/') Cuyana Medical
+      button.navbar-toggler.position-absolute.d-md-none.collapsed(type='button' data-bs-toggle='collapse' data-bs-target='#sidebarMenu' aria-controls='sidebarMenu' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+     
+      .navbar-nav
+        .nav-item.text-nowrap
+          if(user && persona)
+            a.nav-link.pl-5 Bienvenido  #{persona.nombre} #{persona.apellido}.  Usuario: #{user.usuario} 
+          else  
+            a.nav-link.pl-5 Bienvenido Usuario: #{user.usuario} 
+      .navbar-nav      
+        .nav-item.text-nowrap
+          a.nav-link.px-3(href='/logout') Cerrar sesion
+    .container-fluid
+      .row
+        nav#sidebarMenu.col-md-3.col-lg-2.d-md-block.bg-light.sidebar.collapse
+          .position-sticky.pt-3
+            ul.nav.flex-column
+              li.nav-item
+                a.nav-link(aria-current='page' href='/clinica/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home" aria-hidden="true")
+                    path(d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z")
+                    polyline(points="9 22 9 12 15 12 15 22")
+                  |                 Clinicas
+              li.nav-item
+                a.nav-link(href='/medico/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user" aria-hidden="true")
+                    path(d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2")
+                    circle(cx="12" cy="7" r="4")
+
+                  |                 Medicos
+              li.nav-item
+                a.nav-link(href='/procedimiento/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity" aria-hidden="true")
+                    polyline(points="22 12 18 12 15 21 9 3 6 12 2 12")
+      
+                  |                 Procedimientos
+              li.nav-item
+                a.nav-link(href='/especialidad/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-plus-square" aria-hidden="true")
+                    rect(x="3" y="3" width="18" height="18" rx="2" ry="2")
+                    line(x1="12" y1="8" x2="12" y2="16")
+                    line(x1="8" y1="12" x2="16" y2="12")
+                  |    Especialidades
+              li.nav-item
+                a.nav-link(href='/persona/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" aria-hidden="true")
+                    path(d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2")
+                    circle( cx="9" cy="7" r="4")
+                    path(d="M23 21v-2a4 4 0 0 0-3-3.87")
+                    path(d="M16 3.13a4 4 0 0 1 0 7.75")
+                 
+                  |                 Personas
+              //- li.nav-item
+              //-   a.nav-link(href='/usuario/')
+              //-     svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users" aria-hidden="true")
+              //-       path(d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2")
+              //-       circle( cx="9" cy="7" r="4")
+              //-       path(d="M23 21v-2a4 4 0 0 0-3-3.87")
+              //-       path(d="M16 3.13a4 4 0 0 1 0 7.75")
+              //-     |                 Usuarios
+              li.nav-item
+                a.nav-link(href='/agenda/')
+                  svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book" aria-hidden="true")
+                    path(d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20")
+                    path(d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z")
+                    
+                  |                 Agenda
+              //- li.nav-item
+              //-   a.nav-link(href='/turno/')
+              //-     svg(xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open" aria-hidden="true")
+              //-       path(d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z")
+              //-       path(d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z")
+            
+              //-     |                 Turnos
+          
+        main.col-md-9.ms-sm-auto.col-lg-10.px-md-4
+          .d-flex.justify-content-between.flex-wrap.flex-md-nowrap.align-items-center.pt-3.pb-2.mb-3.border-bottom
+            h1.h2 Agregar dia a la agenda
+            .btn-toolbar.mb-2.mb-md-0
+              .btn-group.me-2
+                a.btn.btn-sm.btn-outline-secondary(type='button' href='/agenda/') Volver
+               
+          
+        
+        
+              
+          div(class="container")
+            div(class="form-group")
+              div(class="row")
+                div( class="card mb-3")
+                  div( class="card-body")
+                    div(id="calendar")
+                   
+                    
+
+include ../footer  include ../../public/javascripts/calendar_main.js
+include ../../public/javascripts/es.js
+script(src="/javascripts/calendar_main.js")
+script(src="/javascripts/es.js")
+
+script.
+        let calendar;
+        let url;
+        $(document).ready(function() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+            dd = '0' + dd;
+            }
+            if (mm < 10) {
+            mm = '0' + mm;
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById("fecha").setAttribute("min", today);
+            url = window.location.href.split("/")[5];
+            $.ajax({
+                url: `http://localhost:3000/agenda/agenda/${url}`,
+                type: 'GET',
+                success: function(respuesta) {
+                    var evts = []
+                    respuesta.forEach(a=>{
+                        e = {
+                            id:a.id,
+                            title: prettyTime(a.hora_inicio) + " - " + prettyTime(a.hora_fin),
+                            url: `/turno/calendario/${a.id}`,
+                            start: a.fecha
+                        }
+                        evts.push(e);
+                    })
+                    var calendarEl = document.getElementById('calendar');
+                    calendar = new FullCalendar.Calendar(calendarEl, {
+                        locale: 'es',
+                        initialView: 'dayGridMonth',
+                        headerToolbar: {
+                            center: 'addEventButton'
+                        },
+                        customButtons: {
+                            addEventButton: {
+                                text: 'AGREGAR DIA',
+                                click: function() {
+                                    $("#myModal").modal('show');
+                                }
+                            }
+                        },
+                        selectable: true,
+                        events: evts
+                        });
+                    calendar.render();
+                },
+                error: function() {
+                    console.error("No es posible completar la operación");
+                }
+            });
+        });
+
+        function agregarDia(){
+            $.ajax({
+                type:"POST",
+                url:"http://localhost:3000/agenda/agregarDia",
+                data:{
+                    agendaid: url,
+                    fecha: $("#fecha").val(),
+                    hora_inicio: $("#hora_inicio").val(),
+                    hora_fin: $("#hora_fin").val()},
+                success:function(datos){
+                    console.log(datos)
+                }
+            })
+            location.reload();
+        }
+
+        function prettyTime(time) {
+            return time.split(":")[0] + ":" + time.split(":")[1]
+        }

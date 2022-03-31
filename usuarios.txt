@@ -1,0 +1,12 @@
+
+ADMINISTRADOR:
+- marche@gmail.com 123456
+
+
+SECRETARIO:
+- marce@gmail.com 123456
+- lauchi@gmail.com 123456
+PACIENTE:
+- jorgeb@gmail.com jorgeb
+- marcos@paz 123456
+- maxim@gmail.com maxi123
